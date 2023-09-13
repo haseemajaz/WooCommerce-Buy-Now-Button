@@ -22,33 +22,25 @@ On the right side, find and click on the functions.php file.
 Scroll to the bottom of the file and paste the following code snippet:
 
 
+/* Create Buy Now Button dynamically after Add To Cart button */
+function add_content_after_addtocart() {
+    // get the current post/product ID
+    $current_product_id = get_the_ID();
+ 
+    // get the product based on the ID
+    $product = wc_get_product( $current_product_id );
+ 
+    // get the "Checkout Page" URL
+    $checkout_url = WC()->cart->get_checkout_url();
+ 
+    // run only on simple products
+    if( $product->is_type( 'simple' ) ){
+        echo '<div class="clear-sec"></div>';
+        echo '<a href="'.$checkout_url.'?add-to-cart='.$current_product_id.'" class="buy-now button">Buy Now</a>';
+    }
+}
+add_action( 'woocommerce_after_add_to_cart_button', 'add_content_after_addtocart' );
 
-
-_**/* Create Buy Now Button dynamically after Add To Cart button */**_
-
-_**function add_content_after_addtocart() {**_
-
-_**// get the current post/product ID**_
-
-_**$current_product_id = get_the_ID();**_
-
-_**// get the product based on the ID**_
-
-_**$product = wc_get_product( $current_product_id );**_
-
-_**// get the "Checkout Page" URL**_
-
-_**$checkout_url = WC()->cart->get_checkout_url();**_
-
-_**// run only on simple products**_
-
-_**if( $product->is_type( 'simple' ) ){**_
-
-_**echo '<div class="clear-sec"></div>';**_
-
-_**echo '<a href="'.$checkout_url.'?add-to-cart='.$current_product_id.'" class="buy-now button">Buy Now</a>';     } }**_
-
-_**add_action( 'woocommerce_after_add_to_cart_button', 'add_content_after_addtocart' );**_
 
 
 # Save Changes
