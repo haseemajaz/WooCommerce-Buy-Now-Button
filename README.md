@@ -36,12 +36,9 @@ function add_content_after_addtocart() {
     // run only on simple products
     if( $product->is_type( 'simple' ) ){
         echo '<div class="clear-sec"></div>';
-        echo '<a href="'.$checkout_url.'?add-to-cart='.$current_product_id.'" class="buy-now button">Buy Now</a>';
-    }
-}
+        echo '<a href="'.$checkout_url.'?add-to-cart='.$current_product_id.'" class="buy-now button">Buy Now</a>';     } }
 add_action( 'woocommerce_after_add_to_cart_button', 'add_content_after_addtocart' );
 
-/* */
 
 
 # Save Changes
